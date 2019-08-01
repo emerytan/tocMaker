@@ -1,0 +1,116 @@
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(32, 32, 32);
+    color: rgb(128, 128, 128)
+}
+
+.pane-mini {
+    position: relative;
+    width: 20%;
+    background-color: rgb(32, 32, 32);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', monospace;
+    color: rgb(128, 128, 128)
+}
+
+.pane {
+    position: relative;
+    width: auto;
+    background-color: rgb(32, 32, 32);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', monospace;
+    color: rgb(128, 128, 128)
+}
+
+.btn.disabled, .btn:disabled {
+    opacity: 0.2;
+    border-color: #ccc
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #ccc
+}
+
+.eta-button {
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 80%;
+    font-size: .8em
+}
+
+th,
+td {
+    background-color: rgb(32, 32, 32);
+    color: cadetblue
+}
+
+#feedback {  
+    margin: 1% auto;
+    padding: 0 1%
+}
+
+#container1 {
+    height: 70%;
+    margin: 1% 2%;
+    background-color: black;
+    border: 1px solid rgb(96, 96, 96);
+    border-radius: 5px
+}
+
+pre {
+    position: relative;
+    width: 98%;
+    height: 95%;
+    margin: 1% auto;
+    border-radius: 3px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: chartreuse;
+    font-size: .7em;
+}
+
+#testContainer {
+    height: 5%;
+    width: auto;
+    margin: 1% 1%;
+    font-size: .7em;
+    color: cadetblue
+}
+
+.indentText {
+    margin: 3px 8px;
+    font-size: .9em;
+    color: #ccc;
+    border-bottom: 1px solid#ccc
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 1%;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: black;
+    border: 1px solid gray
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-color: cyan;
+    border-radius: 10%
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

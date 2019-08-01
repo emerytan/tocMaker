@@ -1,0 +1,35 @@
+{
+  "name": "bashtag",
+  "productName": "S19 TOC Maker",
+  "version": "1.0.0",
+  "description": "Run bash scripts in Electron",
+  "main": "main.js",
+  "build": {
+    "appId": "com.sixteen19.${name}.app",
+    "productName": "S19 TOC Maker",
+    "target": "dmg",
+    "mac": {
+      "category": "public.app-category.utilities"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pack": "electron-packager ./ --arch=x64 --platform=darwin --out build --overwrite",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "bash",
+    "electron"
+  ],
+  "author": "Emery Anderson",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.7.5",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-packager": "^14.0.4"
+  },
+  "dependencies": {
+    "photonkit": "^0.1.2"
+  }
+}

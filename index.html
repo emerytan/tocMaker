@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+	<link rel="stylesheet" href="./node_modules/photonkit/dist/css/photon.css">
+	<link href="./public/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="window">
+		<div class="window-content">
+			<div class="pane-group">
+				<div class="pane-mini sidebar">
+					<div id="buttons">
+						<button id="setBasePath" class="btn btn-large btn-dark eta-button">Get Tape</button>
+						<button id="getDestination" class="btn btn-large btn-dark eta-button">Set Destination</button>
+						<br>
+						<br>
+						<button id="runScript" class="btn btn-large btn-dark eta-button">Make TOC</button>
+					</div>
+				</div>
+				<div class="pane">
+					<div id="feedback">
+						<table>
+							<tr>
+								<th>Tape Path</th>
+								<th>barcode</th>
+								<th>Destination Path</th>
+							</tr>
+							<tr>
+								<td id="basePath">...</td>
+								<td id="barcode">...</td>
+								<td id="destPath">...</td>
+							</tr>
+						</table>
+					</div>
+					<div id="container1">
+						<pre id="bashOutput1"></pre>
+					</div>
+
+					<div id="testContainer">
+						<p id="debugMessages"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		require('./scripts/renderer')
+	</script>
+</body>
+
+</html>
