@@ -146,7 +146,6 @@ function getTapeName(basePath) {
 	})
 
 	getBarcode.stdout.on('data', (data) => {
-		bashOutput1.innerText = data.toString()
 		userOptions.tapeName = data.toString()
 	})
 	
