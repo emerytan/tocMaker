@@ -13,7 +13,8 @@ const {
 } = require('string_decoder')
 const decoder = new StringDecoder('utf8')
 
-
+var cmdOut
+var countRegex = /(^count:)\s(\d{1,})/
 var userOptions = {
 
 }
@@ -26,14 +27,12 @@ window.onload = function () {
 var bashOutput1 = document.getElementById('bashOutput1')
 var debugMessages = document.getElementById('debugMessages')
 var barcode = document.getElementById('barcode')
-var myDrop = document.getElementById('drop')
 
 document.ondragover = document.ondrop = (event) => {
 	event.preventDefault()
 }
 
 document.body.ondrop = (event) => {
-	console.log(event.dataTransfer.files[0].path)
 	userOptions.basePath = event.dataTransfer.files[0].path
 	event.preventDefault()
 	getTapeName(userOptions.basePath)
@@ -69,9 +68,9 @@ document.getElementById('setBasePath').addEventListener('click', (element, event
 
 document.getElementById('getDestination').addEventListener('click', (element, event) => {
 	dialog.showOpenDialog({
-		defaultPath: userOptions.basePath,
+		// defaultPath: userOptions.basePath,
 		buttonLabel: 'Set Destination Path',
-		properties: ['openDirectory']
+		properties: ['openDirectory', 'createDirectory']
 	}, (selection) => {
 		userOptions.destPath = selection[0]
 		document.getElementById('destPath').innerText = userOptions.destPath
@@ -103,7 +102,14 @@ document.getElementById('runScript').addEventListener('click', (element, event) 
 
 	runEDL.stdout.on('data', (data) => {
 		let pin = document.getElementById('bashOutput1')
-		pin.innerText += decoder.write(data)
+		cmdOut = decoder.write(data)
+		
+		if (countRegex.test(cmdOut)) {
+			let count = countRegex.exec(cmdOut)
+			debugMessages.innerText = count
+		}
+
+		pin.innerText += cmdOut
 		pin.scrollTop = pin.scrollHeight
 	})
 
@@ -118,6 +124,13 @@ document.getElementById('runScript').addEventListener('click', (element, event) 
 			let pin = document.getElementById('bashOutput1')
 			pin.innerText += decoder.write(`done...`)
 			pin.scrollTop = pin.scrollHeight
+
+			let tocPath = path.join(userOptions.destPath, `${userOptions.tapeName}.txt`)
+			exec(`wc -l < ${tocPath} | xargs`, (error,stdout,stderr) => {
+				if (!error || !stderr) {
+					document.getElementById('fileCount').innerText = stdout
+				}
+			})
 
 			for (let index = 0; index < myButtons.length; index++) {
 				myButtons[index].disabled = false
@@ -148,7 +161,7 @@ function getTapeName(basePath) {
 	getBarcode.stdout.on('data', (data) => {
 		userOptions.tapeName = data.toString()
 	})
-	
+
 	getBarcode.on('exit', (code) => {
 		if (code == '0') {
 			barcode.innerText = userOptions.tapeName
